@@ -1,9 +1,7 @@
 import React from 'react';
 import Square from './Square';
 
-
-
-function calculateWinner(squares) {
+function calculateWinner(squares){
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -22,6 +20,8 @@ function calculateWinner(squares) {
     }
     return null;
   }
+
+  
 
 class Board extends React.Component{
     constructor(props){
@@ -53,6 +53,15 @@ class Board extends React.Component{
         );
     }
 
+    restartGame(){
+        this.setState({
+           squares : Array(9).fill(null),
+           xIsNext: true,
+         })
+
+    }
+
+
     render(){
        const winner = calculateWinner(this.state.squares);
        let status;
@@ -78,6 +87,9 @@ class Board extends React.Component{
                     {this.renderSquare(6)}
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
+                </div>
+                <div>
+                <button onClick={this.restartGame.bind(this)}>Restart</button>
                 </div>
             </div>
 
